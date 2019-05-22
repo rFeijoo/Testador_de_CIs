@@ -5,4 +5,4 @@ Projeto de um Testador de Circuitos Integrados, capaz de identificar portas lóg
   - https://www.electronicwings.com/ti-launchpad/oled-graphic-display-interfacing-with-msp-exp430g2-ti-launchpad
   - https://cdn-shop.adafruit.com/datasheets/SSD1306.pdf
   - https://artofcircuits.com/product/ssd1306-white-0-96-128x64-oled-display-i2c-interface
-  
+  - http://www.simplyembedded.org/tutorials/msp430-i2c-basics/
