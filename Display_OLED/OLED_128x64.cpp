@@ -6,7 +6,7 @@
 /*                                                                goldcard99@hotmail.com      */
 /*                                                     Address  : DF, Brasil, 72444-240       */
 /*        Created: 2019/05/21 13:54:29 by rFeijo                                              */
-/*        Updated: 2019/05/27 10:35:44 by rFeijo                                              */
+/*        Updated: 2019/05/27 13:16:45 by rFeijo                                              */
 /*                                                                All Rights Reserved         */
 /**********************************************************************************************/
 
@@ -181,6 +181,74 @@
       }
     }
     return 1;
+  }
+
+// LCD SSD1306 Class :: Print Result
+  void LCD_SSD1306::printResult(uint16_t r)
+  {
+    clear();
+
+    setFontSize(FONT_SIZE_MEDIUM);
+    switch (r)
+    {
+      case 4:
+        setCursor(53, 2);
+        println("NOT");
+        setFontSize(FONT_SIZE_SMALL);
+        setCursor(48, 5);
+        println("74XX04");
+        break;
+      case 8:
+        setCursor(48, 2);
+        println("AND2");
+        setFontSize(FONT_SIZE_SMALL);
+        setCursor(48, 5);
+        println("74XX08");
+        break;
+      case 32:
+        setCursor(53, 2);
+        println("OR2");
+        setFontSize(FONT_SIZE_SMALL);
+        setCursor(48, 5);
+        println("74XX32");
+        break;
+      case 0:
+        setCursor(44, 2);
+        println("NAND2");
+        setFontSize(FONT_SIZE_SMALL);
+        setCursor(48, 5);
+        println("74XX00");
+        break;
+      case 86:
+        setCursor(48, 2);
+        println("XOR2");
+        setFontSize(FONT_SIZE_SMALL);
+        setCursor(48, 5);
+        println("74XX86");
+        break;
+      case 2:
+        setCursor(48, 2);
+        println("NOR2");
+        setFontSize(FONT_SIZE_SMALL);
+        setCursor(48, 5);
+        println("74XX02");
+        break;
+      case 266:
+        setCursor(44, 2);
+        println("XNOR2");
+        setFontSize(FONT_SIZE_SMALL);
+        setCursor(45, 5);
+        println("74XX266");
+        break;
+      default:
+        setCursor(44, 2);
+        println("ERROR");
+        setFontSize(FONT_SIZE_SMALL);
+        setCursor(10, 5);
+        println("CI nao identificado");
+        break;
+    }
+    delay(5000);
   }
 
 // LCD SSD1306 Class :: Print Byte

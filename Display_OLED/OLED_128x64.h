@@ -6,7 +6,7 @@
 /*                                                                goldcard99@hotmail.com      */
 /*                                                     Address  : DF, Brasil, 72444-240       */
 /*        Created: 2019/05/21 13:54:29 by rFeijo                                              */
-/*        Updated: 2019/05/27 10:35:44 by rFeijo                                              */
+/*        Updated: 2019/05/27 13:16:45 by rFeijo                                              */
 /*                                                                All Rights Reserved         */
 /**********************************************************************************************/
 
@@ -64,6 +64,7 @@
         void setCursor(byte column, byte line);
         void setContrast(byte Contrast);
         void draw(const PROGMEM byte* buffer, byte width, byte height);
+        void printResult(uint16_t  r);
         void clear(byte x = 0, byte y = 0, byte width = 128, byte height = 64);
         void clearLine(byte line);
         byte getLines() { return 21; }
