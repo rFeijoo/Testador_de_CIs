@@ -1,5 +1,5 @@
 # Testador_de_CIs
-Projeto de um Testador de Circuitos Integrados, capaz de identificar portas lógicas da família TTL, série 74.
+Projeto de um Testador de Circuitos Integrados, capaz de identificar portas lógicas da família TTL, série 74 para o microcontrolador MSP430G.
 
 # Bibliografia
   - https://www.electronicwings.com/ti-launchpad/oled-graphic-display-interfacing-with-msp-exp430g2-ti-launchpad
