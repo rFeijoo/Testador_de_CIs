@@ -14,15 +14,6 @@
   #include "SSD1306.h"
   #include <Wire.h>
 
-// LCD SSD1306 Class :: Configure Pins
-  SSD1306::SSD1306(int8_t SCLK, int8_t DC, int8_t RST, int8_t CS)
-  {
-    sclk = SCLK;
-    rst  = RST;
-    cs   = CS;
-    dc   = DC;
-  }
-
 // LCD SSD1306 Class :: Set RESET Pin
   SSD1306::SSD1306(int8_t reset)
   {
