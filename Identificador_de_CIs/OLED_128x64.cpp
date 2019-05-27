@@ -496,14 +496,13 @@
   }
 
 // LCD SSD1306 Class :: Clear Display
-  void LCD_SSD1306::clear(byte x, byte y, byte width, byte height)
+  void LCD_SSD1306::clear(byte x, byte width, byte height)
   {
     ssd1306_command(SSD1306_SETLOWCOLUMN  | 0x0);   // Low col = 0
     ssd1306_command(SSD1306_SETHIGHCOLUMN | 0x0);   // Hi  col = 0
     ssd1306_command(SSD1306_SETSTARTLINE  | 0x0);   // Line #0
   
     width  >>= 3;
-    y      >>= 3;
   
     for (byte i = 0; i < height; i++)
     {

@@ -66,7 +66,7 @@
         void printLogo(const PROGMEM byte* buffer, byte width, byte height);
         void draw(const PROGMEM byte* buffer, byte width, byte height);
         void printResult(uint16_t  r);
-        void clear(byte x = 0, byte y = 0, byte width = 128, byte height = 64);
+        void clear(byte x = 0, byte width = 128, byte height = 64);
         void clearLine(byte line);
         byte getLines() { return 21; }
         byte getCols() { return 8; }

@@ -92,13 +92,13 @@
     ssd1306_command(SSD1306_SETHIGHCOLUMN | 0x0);           // Hi  col = 0
     ssd1306_command(SSD1306_SETSTARTLINE  | 0x0);           // Line #0
 
-    for (byte i = 0; i < SSD1306_LCDHEIGHT / 8; i++)
+    for (byte i = 0; i < SSD1306_LCDHEIGHT; i++)
     {
       for(byte j = 0; j < 8; j++)
       {
         Wire.beginTransmission(_i2caddr);
         Wire.write(0x40);
-        for (byte k = 0; k < SSD1306_LCDWIDTH / 8; k++)
+        for (byte k = 0; k < SSD1306_LCDWIDTH/8; k++)
             Wire.write(0);
         Wire.endTransmission();
       }
