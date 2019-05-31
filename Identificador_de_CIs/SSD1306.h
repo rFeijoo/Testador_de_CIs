@@ -70,7 +70,7 @@
   class SSD1306
   {
     public:
-      SSD1306(int8_t RST = 4);
+      //SSD1306(int8_t RST = 4);
     
       void begin(uint8_t switchvcc = SSD1306_SWITCHCAPVCC, uint8_t i2caddr = SSD1306_I2C_ADDRESS);
       void ssd1306_command(uint8_t c);

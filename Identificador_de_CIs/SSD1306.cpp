@@ -13,14 +13,14 @@
 // Includes
   #include "SSD1306.h"
   #include <Wire.h>
-
+/*
 // LCD SSD1306 Class :: Set RESET Pin
   SSD1306::SSD1306(int8_t reset)
   {
     sclk = dc = cs = -1;
     rst = reset;
   }
-
+*/
 // LCD SDD1306 Class :: Start Communication
   void SSD1306::begin(uint8_t vccstate, uint8_t i2caddr)
   {
@@ -28,16 +28,16 @@
     
     Wire.begin();
 
-    pinMode(rst, OUTPUT);
-    digitalWrite(rst, HIGH);
-    
-    delay(10);
-    
-    digitalWrite(rst, LOW);
-
-    delay(10);
-    
-    digitalWrite(rst, HIGH);
+//    pinMode(rst, OUTPUT);
+//    digitalWrite(rst, HIGH);
+//    
+//    delay(10);
+//    
+//    digitalWrite(rst, LOW);
+//
+//    delay(10);
+//    
+//    digitalWrite(rst, HIGH);
 
     #if defined SSD1306_128_64                              // Init configuration sequence for 128x64 OLED module
     ssd1306_command(SSD1306_DISPLAYOFF);                    // 0xAE

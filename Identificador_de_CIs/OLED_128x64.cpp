@@ -190,13 +190,15 @@
 
     setCursor(40, 0);
     draw(buffer, width, height);
-    delay(200);
+    delay(250);
 
     setFontSize(FONT_SIZE_SMALL);
     setCursor(20, 7);
     println("Testador de CIs");
     
-    delay(800);
+    delay(2750);
+
+    clear();
   }
 
 // LCD SSD1306 Class :: Print Result
@@ -264,7 +266,8 @@
         println("CI nao identificado");
         break;
     }
-    delay(5000);
+    delay(10000);
+    clear();
   }
 
 // LCD SSD1306 Class :: Print Byte
