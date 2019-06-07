@@ -8,23 +8,7 @@
 /*        Created: 2019/05/21 13:54:29 by rFeijo                                              */
 /*        Updated: 2019/05/31 04:38:38 by rFeijo                                              */
 /*                                                                All Rights Reserved         */
-/**********************************************************************************************/
-
-// Port Configuration based on CI pinout
-  // CI identification - Pattern: CI number, # test case, P1DIR, P2DIR
-  const PROGMEM uint16_t ci_id[][4] = {{0x04, 0x02, 0x93, 0x61},                  // NOT
-                                       {0xFF, 0x00, 0x00, 0x00},                  // END CASE
-                                       {0x08, 0x04, 0x00, 0x00},                  // AND2
-                                       {0xFF, 0x00, 0x00, 0x00}};                 // END CASE
-
-  // CI test case - Pattern: CI number, P1OUT, P2OUT, P1IN, P2IN
-  const PROGMEM uint16_t truth_table[][5] = {{0x04, 0x08, 0x06, 0x64, 0x98},        // NOT  - in=0  -> out=1
-                                             {0x00, 0x9A, 0x66, 0x64, 0x98},        // NOT  - in=1  -> out=0
-                                             {0x00, 0x00, 0x00, 0x00, 0x00},        // AND2 - in=00 -> out=0
-                                             {0x00, 0x00, 0x00, 0x00, 0x00},        // AND2 - in=01 -> out=0
-                                             {0x00, 0x00, 0x00, 0x00, 0x00},        // AND2 - in=10 -> out=0
-                                             {0x00, 0x00, 0x00, 0x00, 0x00},        // AND2 - in=11 -> out=1
-                                             {0xFF, 0x00, 0x00, 0x00, 0x00}};       // END CASE                                                                    
+/**********************************************************************************************/                                                                 
 
 // Logo
   const PROGMEM uint8_t logo[48 * 48 / 8] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x80, 0xC0, 0xC0, 0xE0, 0xE0,
