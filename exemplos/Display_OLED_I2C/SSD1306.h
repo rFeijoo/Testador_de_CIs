@@ -7,13 +7,11 @@
   #define lcd_height    64
   #define lcd_height_b  8
 
+  #define f_width       5
   #define space_char    1                     // Space between chars
-
-  #define meta_size     3
   #define max_f_size    8                     // Max. font cache size for resize function
-  #define meta_w_size   64                    // Metaballs
 
-  unsigned const char time_ms = 80;
+  unsigned const char time_ms = 50;
 
   unsigned char byte, bit_num;                // Global buffer and bit index
   unsigned int h_index, w_index;              // Global width_index and height_index
@@ -50,21 +48,19 @@
 
   const char s_size = sizeof(sine_array);
 
-  const char str_scene00_0[] = {"XDEC"};
-  const char str_scene00_1[] = {"presents "};
-  const char str_scene00_3[] = {"*****"};
-
   // SSD1306 Class
   class SSD1306
   {
     public:
         void delay(volatile unsigned int t);
         void OLED_begin(void);
+        void bouncy_bmp(signed int x, unsigned int f_height, unsigned int time_ms, unsigned int b_width, unsigned int b_height,const char *bmap);
         void fill_display(unsigned char width, unsigned char height, unsigned char byte);
         void set_cursor(unsigned char x, unsigned char y);
         void clean_area(unsigned char x_start, unsigned char x_end, unsigned char y_start, unsigned char y_end);
         void draw_string_sin_fixed(signed int x, signed int y, const char *string, unsigned int x_s, unsigned char div);
         void draw_string_sin(signed int x, signed int y, const char *string, unsigned char div);
+        void draw_string(signed int x, signed int y, const char *string);
         unsigned int get_sin(signed int x);
         unsigned int get_abs(signed int x);
         void draw_bitmap(signed int x, signed int y, unsigned int b_width, unsigned int b_height, const char *bmap);
@@ -75,6 +71,7 @@
         void write_char(unsigned char x, unsigned char y, unsigned char character, unsigned char f_size);
         void string_typer(unsigned char x, unsigned char y, const char *string, unsigned char f_size, unsigned int ms);
         void scene_00_typer_help(unsigned char x, unsigned char y_pos);
+        void scene_04_scroller_help(const char *str_mid, const char *str_up_down);
   };
 
 #endif /* SSD1306_H_ */

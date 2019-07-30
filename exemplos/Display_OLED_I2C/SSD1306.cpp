@@ -24,6 +24,38 @@ void SSD1306::delay(volatile unsigned int t)
   }
 
 /****************************************************************************************************************************/
+  void SSD1306::bouncy_bmp(signed int x, unsigned int f_height, unsigned int time_ms, unsigned int b_width,
+                                                                               unsigned int b_height,const char *bmap)
+  {
+    signed int y = 0;
+
+    bit_num = 0;
+
+    y = lcd_height - f_height - b_height;
+
+    while (f_height)
+    {
+      draw_bitmap(x, y, b_width, b_height, bmap);
+
+      if(((y + (signed int)b_height) == lcd_height) && !bit_num)
+      {
+        f_height /= 2;
+        bit_num = 1;
+      }
+
+      if(((lcd_height - b_height - y) == f_height) && bit_num)
+        bit_num = 0;
+
+      if(!bit_num)
+        y++;
+      else
+        y--;
+
+      delay(time_ms/5);
+    }
+  }
+
+/****************************************************************************************************************************/
   void SSD1306::set_cursor(unsigned char x, unsigned char y)
   {
     Wire.beginTransmission(OLED_addr);
@@ -31,21 +63,21 @@ void SSD1306::delay(volatile unsigned int t)
     Wire.write(0x0F & x, 0);            // Set lower nibble of the column start address
     Wire.endTransmission();
 
-    delay(10);                          // 10ms delay
+//    delay(1);                           // 1ms delay
 
     Wire.beginTransmission(OLED_addr);
     Wire.write(0x00, 1);
-    Wire.write(0x10 + (x >> 4), 0);      // Set higher nibble of the column start address
+    Wire.write(0x10 + (x >> 4), 0);     // Set higher nibble of the column start address
     Wire.endTransmission();
 
-    delay(10);                          // 10ms delay
+//    delay(1);                           // 1ms delay
 
     Wire.beginTransmission(OLED_addr);
     Wire.write(0x00, 1);
     Wire.write(0xB0 + y, 0);
     Wire.endTransmission();
 
-    delay(10);                          // 10ms delay
+//    delay(1);                           // 1ms delay
   }
 
 /****************************************************************************************************************************/
@@ -121,6 +153,27 @@ void SSD1306::delay(volatile unsigned int t)
     {
       if(x >= -(signed int)f_width - 1)   // Part of char inside display
         draw_bitmap(x, y + get_sin(x) / div, f_width, 8, ascii_table[*string]);
+      *string++;
+      x += f_width + space_char;
+    }
+  }
+
+/****************************************************************************************************************************/
+  void SSD1306::draw_string(signed int x, signed int y, const char *string)
+  {
+    while((*string != 0) && (x < lcd_width))
+    {
+      if(x >= -(signed int)f_width - 1)   // Part of char inside display
+      {
+        draw_bitmap(x, y, f_width, 8, ascii_table[*string]);
+        if(x + f_width < lcd_width)       // Clear byte after, only if inside display!
+        {
+          Wire.beginTransmission(OLED_addr);
+          Wire.write(0x40, 1);
+          Wire.write(0x00, 0);
+          Wire.endTransmission();
+        }
+      }
       *string++;
       x += f_width + space_char;
     }
@@ -415,10 +468,35 @@ void SSD1306::delay(volatile unsigned int t)
 /****************************************************************************************************************************/
   void SSD1306::scene_00_typer_help(unsigned char x, unsigned char y_pos)
   {
-    while(x < 3)
+    while (x < 3)
     {
       string_typer(5 + (x * (sizeof(str_scene00_0) - 1)), y_pos, str_scene00_0, 0, time_ms);
       x++;
     }
     x = 0;
+  }
+
+/****************************************************************************************************************************/
+  void SSD1306::scene_04_scroller_help(const char *str_mid, const char *str_up_down)
+  {
+    signed int x, y, x1 = 128, y1, x2 = 128;
+
+    x = lcd_width;
+    y = -(6 * (sizeof(str_scene04_0) - 1));
+    y1= 2;
+
+    while (y1)
+    {
+      draw_string_sin_fixed(x1, 24, str_mid, x2++, 2);
+      draw_string(x--, 0, str_up_down);
+      draw_string(y++, 56, str_up_down);
+      if(y > lcd_width)
+      {
+        x = lcd_width;
+        y = -(6 * sizeof(str_scene04_0) - 1);
+        y1--;
+      }
+      delay(5);
+      clean_area(x1, lcd_width, 3, 5);
+    }
   }
